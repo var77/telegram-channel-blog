@@ -30,7 +30,7 @@ defmodule ChannelBot.Bot do
   end
 
   def handle_info({:trigger, offset}, state) do
-    IO.puts :"Checking for updates #{offset}"
+#    IO.puts :"Checking for updates #{offset}"
     case Nadia.get_updates(offset: offset, allowed_updates: ["update_id", "channel_post", "edited_channel_post"]) do
       {:ok, updates} ->
         Enum.each(updates, fn(update) -> spawn(fn -> handle_update(update) end)  end)
