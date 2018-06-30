@@ -9,7 +9,7 @@
 
 > Add bot as admin to your channel
 
-> Edit `config.exs` file to add your bot token
+> Edit `config/config.exs` file to add your bot token
 
 ```
 mix deps.get
