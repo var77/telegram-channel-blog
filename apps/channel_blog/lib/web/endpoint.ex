@@ -10,6 +10,9 @@ defmodule Blog.Endpoint do
   plug Plug.Static,
        at: "/assets", from: "priv/assets"
 
+  plug Plug.Static,
+       at: "/", from: "priv/client/dist"
+
 #  plug Plug.Static,
 #       at: "/", from: "priv/"
 

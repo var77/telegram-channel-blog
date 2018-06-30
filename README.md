@@ -13,10 +13,10 @@
 
 ```
 mix deps.get
+mix blog.compile
 mix phx.server
-cd priv/client && npm i && npm start
 ```
-> Then go to http://localhost:3000 and post something to your channel
+> Then go to http://localhost:4000 and post something to your channel
 
 > You can build your own client using API mentioned below
 

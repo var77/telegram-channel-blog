@@ -14,6 +14,7 @@ defmodule Blog.Router do
 
   end
 
+  get "/", Blog.PageController, :index
   get "/*path", Blog.BlogController, :not_found
 
 end
