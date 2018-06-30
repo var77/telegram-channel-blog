@@ -1,0 +1,13 @@
+.post-item {
+    background: #a0b0c0;
+    display: flex;
+    width: 100%;
+    border: 1px solid;
+    margin: 10px;
+}
+
+.post-item img {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+}
