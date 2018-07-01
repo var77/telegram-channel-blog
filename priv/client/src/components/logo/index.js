@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../../styles/index.css';
 import './index.css';
 import ReactLogo from './reactLogo';
+import Fav from '../../assets/img/favicon.png'
 
 export default class Logo extends Component {
     render () {

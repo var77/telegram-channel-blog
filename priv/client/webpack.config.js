@@ -31,7 +31,7 @@ module.exports = {
         ]
     },
 
-    devServer: { 
+    devServer: {
         host: 'localhost',
         port: 3000,
         inline: true
