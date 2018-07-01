@@ -2,8 +2,8 @@ defmodule ChannelBot.Helpers do
 
   def get_title(update) do
     cond do
-      update.caption -> update.caption |> get_first_line |> make_short_title
-      update.text -> update.text |> get_first_line |> make_short_title
+      update.caption -> update.caption |> get_first_line# |> make_short_title
+      update.text -> update.text |> get_first_line# |> make_short_title
       true -> ""
     end
   end
@@ -37,11 +37,23 @@ defmodule ChannelBot.Helpers do
     Enum.at(arr, length(arr) - 1)
   end
 
+  def get_file_type_from_ext(name) do
+    arr = String.split(name, ".")
+    ext = Enum.at(arr, length(arr) - 1)
+
+    cond do
+      String.match?(ext, ~r/mp4|mov|ogg|mpeg|gif/i) -> :video
+      String.match?(ext, ~r/jpe?g|png|svg/i) -> :photo
+      true -> ext
+    end
+  end
+
   def get_file_id_and_type(update) do
     photos_length = length(update.photo)
     cond do
       photos_length > 0 -> %{type: :photo, file_id: Enum.at(update.photo, photos_length - 1).file_id}
       update.video -> %{type: :video, file_id: update.video.file_id}
+      update.document -> %{type: nil, file_id: update.document.file_id}
       true -> nil
     end
   end

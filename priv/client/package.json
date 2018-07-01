@@ -5,11 +5,9 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack",
-    "webpack-dev-server": "webpack-dev-server",
-    "start": "NODE_ENV=dev webpack-dev-server --content-base dist/",
+    "start": "NODE_ENV=dev ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base dist/",
     "lint-fix": "./node_modules/.bin/eslint ./src --fix",
-    "build": "NODE_ENV=prod webpack",
+    "build": "NODE_ENV=prod ./node_modules/webpack/bin/webpack.js",
     "compile": "npm i && npm run build"
   },
   "repository": {
