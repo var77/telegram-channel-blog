@@ -35,7 +35,7 @@ defmodule ChannelBot.Bot do
       {:ok, updates} ->
         Enum.each(updates, fn(update) -> spawn(fn -> handle_update(update) end)  end)
         :erlang.send_after(2000, self(), {:trigger, Helpers.get_next_offset(updates)})
-      _ -> nil
+      _ -> :erlang.send_after(2000, self(), {:trigger, -1})
     end
     {:noreply, state}
   end
