@@ -11,6 +11,8 @@
 
 > Edit `config/config.exs` file to add your bot token
 
+> __You need to have installed [Elixir](https://elixir-lang.org/install.html), [MongoDB](https://docs.mongodb.com/manual/installation/) and [NodeJS](https://nodejs.org/en/download/package-manager/)__
+
 ```
 mix deps.get
 mix blog.compile
