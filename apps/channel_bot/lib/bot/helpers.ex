@@ -27,9 +27,9 @@ defmodule ChannelBot.Helpers do
     %HTTPoison.Response{body: body} = HTTPoison.get!("https://api.telegram.org/file/bot#{token}/#{file.file_path}")
     file_name = get_file_name(file.file_path)
     File.mkdir(asset_path)
-    file_path = "#{File.cwd!}/#{asset_path}/#{file_name}"
+    file_path = Path.join([File.cwd!, asset_path, file_name])
     File.write!(file_path, body)
-    "#{Application.get_env(:channel_bot, :server_url)}/#{file_name}"
+    Path.join(Application.get_env(:channel_bot, :server_url), file_name)
   end
 
   def get_file_name(path) do
