@@ -39,10 +39,14 @@ class App extends Component {
                     </Toolbar>
                 </AppBar>
                 <div>
-                    {appState === states.loading && <Logo loading />}
-                    <GridList cols={3}>
-                        {this.props.posts.map(post => <PostItem key={post.id} {...post}/>)}
-                    </GridList>
+                    <div>
+                        {appState === states.loading && <Logo loading />}
+                    </div>
+                    <div>
+                        <GridList style={{display:'flex',justifyContent:'center'}} cols={3}>
+                            {this.props.posts.map(post => <PostItem key={post.id} {...post}/>)}
+                        </GridList>
+                    </div>
                 </div>
             </div>
 
@@ -59,4 +63,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
 

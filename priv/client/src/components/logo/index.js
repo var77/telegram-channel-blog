@@ -8,7 +8,7 @@ export default class Logo extends Component {
     render () {
         let { loading } = this.props;
         return (
-            <div alt="logo" className={`logo ${loading ? 'spin' : ''}`}>
+            <div style={{marginLeft:"50%",marginTop:"20%"}} alt="logo" className={`logo ${loading ? 'spin' : ''}`}>
                 <ReactLogo />
             </div>
         );

@@ -10,30 +10,33 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import CardHeader from '@material-ui/core/CardHeader';
+
 
 export default class PostItem extends Component {
     render () {
         let CardWidth = Math.round(window.innerWidth/3.2);
+        let CardHeight= Math.round(window.innerHeight/2.5);
         let { id, title, photo, text } = this.props;
         text = text.length > 20 ? text.slice(0, 20) + "..." : text;
         return (
             <div style={{width:CardWidth,margin:10}}>
-                <Card>
-                    {photo && <CardMedia className= "cardMedia" image={photo}/>}
+                <Link to={`/post/${id}`} style={{textDecoration:"none"}}>
+                <Card style={{height:CardHeight}}>
+                    <CardHeader title={ title }/>
+                    {photo && <CardMedia style={{height:'40%'}}image={photo}/>}
                     <CardContent>
-                        <Typography gutterBottom variant="headline" component="h2">
-                            { title }
-                        </Typography>
                         <Typography component="p">
                             { text }
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button component={Link} to={`/post/${id}`} size="small" color="primary">
+                    <CardActions className={`${!photo ? 'cardActionMargin' : ''}`}>
+                        <Button size="small" color="primary">
                             See post
                         </Button>
                     </CardActions>
                 </Card>
+                </Link>
             </div>
         );
     }
