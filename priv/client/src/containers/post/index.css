@@ -5,3 +5,13 @@
 .post video {
     max-width: 1000px;
 }
+
+.cardSize{
+    width: 60%;
+    margin-left: 20%;
+}
+
+.cardMedia{
+    height: 0 ;
+    padding-top: 100%;
+}

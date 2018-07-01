@@ -12,6 +12,12 @@ import '../../styles/index.css';
 
 import Logo from '../../components/logo';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import GridList from '@material-ui/core/GridList';
+
+
 const { states } = Enum;
 
 class App extends Component {
@@ -22,13 +28,24 @@ class App extends Component {
 
     render () {
         let { appState } = this.props;
-        
+
         return (
-            <div className="flex flex-center flex-column flex1 width100">
-                <h1>Telegram Channel Blog</h1>
-                {appState === states.loading && <Logo loading />}
-                {this.props.posts.map(post => <PostItem key={post.id} {...post}/>)}
+            <div>
+                <AppBar position="static" color="primary">
+                    <Toolbar>
+                        <Typography variant="title" color="inherit">
+                            Telegram Channel Blog
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div>
+                    {appState === states.loading && <Logo loading />}
+                    <GridList cols={3}>
+                        {this.props.posts.map(post => <PostItem key={post.id} {...post}/>)}
+                    </GridList>
+                </div>
             </div>
+
         );
     }
 }
