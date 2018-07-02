@@ -21,7 +21,7 @@ config :channel_repo, Repo,
        hostname: "localhost"
 
 config :nadia,
-       token: "542970826:AAFbSpsWZSB0m1WnTFDR1ZswYe8cTtnVI5M"
+       token: "YOUR_BOT_TOKEN"
 
 config :channel_bot,
        asset_path: "priv/assets",
