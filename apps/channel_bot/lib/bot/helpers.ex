@@ -48,13 +48,13 @@ defmodule ChannelBot.Helpers do
     end
   end
 
-  def get_file_id_and_type(update) do
+  def get_files_id_and_types(update) do
     photos_length = length(update.photo)
     cond do
-      photos_length > 0 -> %{type: :photo, file_id: Enum.at(update.photo, photos_length - 1).file_id}
-      update.video -> %{type: :video, file_id: update.video.file_id}
-      update.document -> %{type: nil, file_id: update.document.file_id}
-      true -> nil
+      photos_length > 0 -> Enum.map(update.photo, fn photo -> %{type: :photo, file_id: photo.file_id} end)
+      update.video -> [%{type: :video, file_id: update.video.file_id}]
+      update.document -> [%{type: nil, file_id: update.document.file_id}]
+      true -> []
     end
   end
 

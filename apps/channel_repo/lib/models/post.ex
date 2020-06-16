@@ -4,8 +4,7 @@ defmodule Post do
 
   schema "posts" do
     field :title, :string
-    field :video, :string
-    field :photo, :string
+    field :files, :string
     field :text, :string
     field :channel, :string
     field :date, :integer

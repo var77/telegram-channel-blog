@@ -17,13 +17,13 @@ import_config "../apps/*/config/config.exs"
 #       metadata: [:user_id]
 
 config :nadia,
-       token: "YOUR_BOT_TOKEN"
+       token: "1099439215:AAGtpUnr1wwiZuParBM0QYYO4QSIDpUwnWg"
 
 config :channel_bot,
        asset_path: "priv/assets",
        server_url: "http://localhost:4000/assets"
 
 config :channel_repo, Repo,
-       database: "telegram-channel-blog",
+       database: "channel_blog",
        hostname: "localhost",
        username: "postgres"

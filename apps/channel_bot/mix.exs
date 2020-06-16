@@ -29,6 +29,7 @@ defmodule ChannelBot.MixProject do
       {:poison, "~> 3.1.0"},
       {:httpoison, "~> 1.7.0"},
       {:nadia, "~> 0.7.0"},
+      {:json, "~> 1.0"}
     ]
   end
 end

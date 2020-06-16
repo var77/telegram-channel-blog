@@ -15,17 +15,19 @@ defmodule ChannelBot.Bot do
     update = update.channel_post
     title = Helpers.get_title(update)
     text = Helpers.get_text(update)
-    file = Helpers.get_file_id_and_type(update)
-    post = %Post{ title: title, text: text, date: update.date, channel: update.chat.title }
-    post = if file do
-      path = Helpers.download_file(file.file_id)
-      file = if !file.type, do: Map.put(file, :type, Helpers.get_file_type_from_ext(path)), else: file
-      Map.put(post, file.type, path)
-    else post
+    files = Helpers.get_files_id_and_types(update)
+    post = %Post{ title: title, text: text, date: update.date, channel: update.chat.title, files: [] }
+    post_files = if length(files) do
+      Enum.map(files, fn file -> 
+          path = Helpers.download_file(file.file_id)
+          file = if !file.type, do: Map.put(file, :type, Helpers.get_file_type_from_ext(path)), else: file
+      end)
+    else
+      []
     end
-
+    Map.put(post, :files, JSON.encode(post_files))
     IO.inspect post
-    Repo.insert!(post)
+    # Repo.insert!(post)
   end
 
   def handle_info({:trigger, offset}, state) do
