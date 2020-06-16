@@ -9,15 +9,24 @@ defmodule ChannelBot.Helpers do
   end
 
   def get_text(update) do
-    cond do
+    text = cond do
       update.caption -> update.caption
       update.text -> update.text
       true -> ""
+    end
+    text_parts = String.split(text, "\n")
+    count = length(text_parts)
+    
+    cond do
+      count > 1 -> text_parts |> tl |> Enum.join("\n")
+      true -> text
     end
   end
 
   def make_short_title(str), do: String.slice(str, 0, 15) <> if String.length(str) > 15, do: "...", else: ""
 
+  def get_first_line(str), do: String.split(str, "\n") |> hd
+  
   def get_first_line(str), do: String.split(str, "\n") |> hd
 
   def download_file(file_id) do
