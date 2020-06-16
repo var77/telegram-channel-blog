@@ -1,0 +1,4 @@
+{
+    "presets":[ "env", "react" ],
+    "plugins" : ["transform-function-bind", "transform-runtime", "transform-object-rest-spread"]
+}

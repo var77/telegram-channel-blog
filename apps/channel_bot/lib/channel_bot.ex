@@ -1,0 +1,3 @@
+defmodule ChannelBot do
+
+end

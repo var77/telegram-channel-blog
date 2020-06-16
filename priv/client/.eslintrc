@@ -1,0 +1,38 @@
+{
+    "extends": "airbnb/base",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "rules": {
+        "indent": [2, 4],
+        "space-before-function-paren": ["error", "always"],
+        "no-console": ["error", { "allow": ["warn", "error", "log"] }],
+        "one-var": "off",
+        "prefer-const": "off",
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "comma-dangle": ["error", "never"],
+        "key-spacing": [
+            "error",
+            {
+                "afterColon": true,
+                "mode": "strict",
+                "align": {
+                    "beforeColon": true,
+                    "afterColon": true,
+                    "on": "colon"
+                }
+            }
+        ],
+        "no-trailing-spaces": [2, { "skipBlankLines": true }]
+    }
+}
