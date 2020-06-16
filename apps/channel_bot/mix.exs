@@ -27,8 +27,8 @@ defmodule ChannelBot.MixProject do
   defp deps do
     [
       {:poison, "~> 3.1.0"},
-      {:httpoison, "~> 0.8"},
-      {:nadia, "~> 0.4.3"},
+      {:httpoison, "~> 1.7.0"},
+      {:nadia, "~> 0.7.0"},
     ]
   end
 end

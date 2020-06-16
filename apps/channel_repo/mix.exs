@@ -27,7 +27,7 @@ defmodule ChannelRepo.MixProject do
   defp deps do
     [
        {:ecto, "~> 2.1.0"},
-       {:mongodb_ecto, "~> 0.2.0"},
+       {:mongodb_ecto, "~> 0.2.1"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true},
     ]
