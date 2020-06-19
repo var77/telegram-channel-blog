@@ -6,7 +6,7 @@ defmodule Repo.Migrations.CreatePosts do
       add :title, :string
       add :video, :string
       add :photo, :string
-      add :text, :string
+      add :text, :text
       add :channel, :string
       add :date, :integer
     end
