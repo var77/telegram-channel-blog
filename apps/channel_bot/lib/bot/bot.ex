@@ -17,10 +17,18 @@ defmodule ChannelBot.Bot do
     text = Helpers.get_text(update)
     file = Helpers.get_file_id_and_type(update)
     post = %Post{ title: title, text: text, date: update.date, channel: update.chat.title }
+    # If there are files download the files
     post = if file do
-      path = Helpers.download_file(file.file_id)
-      file = if !file.type, do: Map.put(file, :type, Helpers.get_file_type_from_ext(path)), else: file
-      Map.put(post, file.type, path)
+      {url, file_path} = Helpers.download_file(file.file_id)
+      file = if !file.type, do: Map.put(file, :type, Helpers.get_file_type_from_ext(url)), else: file
+      # After the files is downloaded check if there's 
+      # AWS bucket configs upload file to bucket and remove from disk
+      url = if System.get_env("AWS_SECRET_ACCESS_KEY") do
+          Helpers.upload_to_s3(file_path)
+        else url
+      end
+
+      Map.put(post, file.type, url)
     else post
     end
 

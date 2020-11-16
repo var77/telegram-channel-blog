@@ -29,6 +29,9 @@ defmodule ChannelBot.MixProject do
       {:poison, "~> 3.1.0"},
       {:httpoison, "~> 1.7.0"},
       {:nadia, "~> 0.7.0"},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:uuid, "~> 1.1" },
     ]
   end
 end

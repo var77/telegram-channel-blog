@@ -9,6 +9,7 @@ defmodule Blog.Router do
 
   scope "/blog", Blog do
     pipe_through :api
+    get "/health", BlogController, :health
     get "/posts", BlogController, :all
     get "/post/:id", BlogController, :one
 

@@ -23,6 +23,11 @@ defmodule ChannelBot.Helpers do
     end
   end
 
+  def get_file_ext(path) do
+    arr = String.split(path, ".")
+    Enum.at(arr, length(arr) - 1)
+  end
+
   def make_short_title(str), do: String.slice(str, 0, 15) <> if String.length(str) > 15, do: "...", else: ""
 
   def get_first_line(str), do: String.split(str, "\n") |> hd
@@ -38,7 +43,7 @@ defmodule ChannelBot.Helpers do
     File.mkdir(asset_path)
     file_path = Path.join([File.cwd!, asset_path, file_name])
     File.write!(file_path, body)
-    Path.join(Application.get_env(:channel_bot, :server_url), file_name)
+    { Path.join(Application.get_env(:channel_bot, :server_url), file_name), file_path }
   end
 
   def get_file_name(path) do
@@ -47,8 +52,7 @@ defmodule ChannelBot.Helpers do
   end
 
   def get_file_type_from_ext(name) do
-    arr = String.split(name, ".")
-    ext = Enum.at(arr, length(arr) - 1)
+    ext = get_file_ext(name)
 
     cond do
       String.match?(ext, ~r/mp4|mov|ogg|mpeg|gif/i) -> :video
@@ -70,5 +74,27 @@ defmodule ChannelBot.Helpers do
   def get_next_offset(updates) do
     update = Enum.at(updates, length(updates) - 1)
     if update, do: update.update_id + 1, else: -1
+  end
+
+  def upload_to_s3(path) do
+    # Get file extension
+    file_name = get_file_name(path)
+    file_uuid = UUID.uuid4(:hex) 
+    unique_filename = "#{file_uuid}-#{file_name}"
+    {:ok, binary} = File.read(path)
+    bucket_name = System.get_env("BUCKET_NAME")
+    region = System.get_env("AWS_REGION") || "eu-central-1"
+
+    {:ok, body} = 
+      ExAws.S3.put_object(bucket_name, unique_filename, binary)          
+      |> ExAws.request(region: region)
+    
+    remove_file(path)
+    # return the image url and add to the params to be stored
+    "https://#{bucket_name}.s3.amazonaws.com/#{bucket_name}/#{unique_filename}"
+  end
+
+  def remove_file(path) do
+    File.rm_rf(path)
   end
 end

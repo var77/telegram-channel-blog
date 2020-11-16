@@ -1,0 +1,4 @@
+_build
+.idea
+deps
+priv/assets

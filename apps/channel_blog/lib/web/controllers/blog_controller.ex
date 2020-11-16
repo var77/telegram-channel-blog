@@ -17,6 +17,10 @@ defmodule Blog.BlogController do
     end
   end
 
+  def health(conn, params) do
+    send_resp conn, 200, "OK"
+  end
+
   def not_found(conn, _opts) do
     send_resp conn, 404, "Not found"
   end
